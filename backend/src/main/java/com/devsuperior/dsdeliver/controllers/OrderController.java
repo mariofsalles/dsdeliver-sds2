@@ -5,8 +5,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,8 +27,8 @@ public class OrderController {
 	
 	@GetMapping
 	public ResponseEntity<List<OrderDTO>> findAll(){
-		List<OrderDTO> list = service.findAll();
-		return ResponseEntity.ok().body(list);
+		List<OrderDTO> listOrderDto = service.findAll();
+		return ResponseEntity.ok().body(listOrderDto);
 	}
 	
 	@PostMapping
@@ -39,6 +42,12 @@ public class OrderController {
 					.toUri();
 		
 		return ResponseEntity.created(uri).body(orderDto);
+	}
+	
+	@PutMapping("/{id}/delivered")
+	public ResponseEntity<OrderDTO> setDelivered(@PathVariable Long id){
+		OrderDTO orderDto = service.setDelivered(id);
+		return ResponseEntity.ok().body(orderDto);
 	}
 
 }

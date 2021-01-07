@@ -25,8 +25,6 @@ public class OrderDTO implements Serializable{
 	public OrderDTO() {
 	}
 	
-	
-
 	public OrderDTO(Long id, String address, Double latitude, Double longitude, Instant moment, OrderStatus status) {
 		super();
 		this.id = id;
@@ -36,8 +34,6 @@ public class OrderDTO implements Serializable{
 		this.moment = moment;
 		this.status = status;
 	}
-
-
 
 	public OrderDTO(Order entity) {
 		id = entity.getId();
@@ -100,7 +96,5 @@ public class OrderDTO implements Serializable{
 
 	public List<ProductDTO> getProducts() {
 		return products;
-	}
-	
-	
+	}	
 }
